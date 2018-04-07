@@ -36,11 +36,14 @@ flex-grow: 1;
     text-align: center;
     padding: 10px;
 }
-.newSong .active{
+.newSong.active{
     background: #d4d4d4;
 }
+
+#songList-container{
+    flex-grow: 1;
+}
 .songList{
-flex-grow: 1;
 text-align: left;
 border-top: 1px solid #333;
 }
