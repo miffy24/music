@@ -119,7 +119,7 @@
                 if(this.model.data.id){
                     this.model.data = {}
                 }else{
-                    Objec.assign(this.model.data,data)
+                    Object.assign(this.model.data,data)
                 }
                 this.view.render(this.model.data)
             })
