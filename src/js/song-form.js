@@ -127,10 +127,6 @@
                 this.model.data = data
                 this.view.render(this.model.data)                
             })
-            window.eventHub.on('new',(data)=>{
-                this.model.data ={}
-                this.view.render(this.model.data )
-            })
         }        
     }
     controller.init(view,model)
