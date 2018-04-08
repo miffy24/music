@@ -29,7 +29,7 @@
         
         `,
         render(data={}){
-            let placeholders =['name','singer','url']
+            let placeholders =['name','singer','url','id']
             let html = this.template
             placeholders.map((string)=>{
                 html=html.replace(`__${string}__`,data[string]||'')
@@ -66,10 +66,7 @@
             this.view.render(this.model.data)
             this.view.init()
             this.bindEvents()
-            window.eventHub.on('upload',(data)=>{
-                this.model.data = data
-                this.view.render(this.model.data)
-            })
+            this.bindEventHubs()
         },
         bindEvents(){
             this.view.$el.on('submit','form',(e)=>{
@@ -85,7 +82,17 @@
                         let string = JSON.stringify(this.model.data)
                         let object = JSON.parse(string)
                         window.eventHub.emit('create',object)
-                    })
+                })
+            })
+        },
+        bindEventHubs(){
+            window.eventHub.on('upload',(data)=>{
+                this.model.data = data
+                this.view.render(this.model.data)
+            })
+            window.eventHub.on('select',(data)=>{
+                this.model.data = data
+                this.view.render(this.model.data)                
             })
         }        
     }
