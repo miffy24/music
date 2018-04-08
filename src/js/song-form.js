@@ -6,7 +6,6 @@
         },
         template:`
             <form class="form">
-                <h2>新建歌曲</h2>
                 <div class="row">
                     <label >歌名</label>
                     <input name="name" type="text" value="__name__">
@@ -35,6 +34,11 @@
                 html=html.replace(`__${string}__`,data[string]||'')
             })
             $(this.el).html(html)
+            if(data.id){
+                $(this.el).prepend('<h2>编辑歌曲</h2>')
+            }else{
+                $(this.el).prepend('<h2>新建歌曲</h2>')
+            }
         },
         reset(){
             this.render({})
@@ -93,6 +97,10 @@
             window.eventHub.on('select',(data)=>{
                 this.model.data = data
                 this.view.render(this.model.data)                
+            })
+            window.eventHub.on('new',(data)=>{
+                this.model.data ={}
+                this.view.render(this.model.data )
             })
         }        
     }
