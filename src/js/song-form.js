@@ -90,8 +90,12 @@
             })
         },
         bindEventHubs(){
-            window.eventHub.on('upload',(data)=>{
-                this.model.data = data
+            window.eventHub.on('new',(data)=>{
+                if(this.model.data.id){
+                    this.model.data = {}
+                }else{
+                    Objec.assign(this.model.data,data)
+                }
                 this.view.render(this.model.data)
             })
             window.eventHub.on('select',(data)=>{
